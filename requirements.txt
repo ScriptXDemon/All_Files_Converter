@@ -1,3 +1,12 @@
 pip install --upgrade pip
-pip install streamlit Pillow img2pdf pdfkit docx python-docx nbformat nbconvert docx2pdf tempfile
+pip install streamlit 
+pip install Pillow 
+pip install img2pdf
+pip install pdfkit 
+pip install docx 
+pip install python-docx 
+pip install nbformat 
+pip install nbconvert
+pip install docx2pdf 
+pip install tempfile
 
