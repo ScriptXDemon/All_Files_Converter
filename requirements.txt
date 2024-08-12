@@ -1,5 +1,6 @@
 streamlit==1.25.0
-Pillow>=7.1.0,<10.0.0
+pip install Pillow --prefer-binary
+pip install --upgrade pip setuptools wheel
 img2pdf==0.4.4
 pdfkit==1.0.0
 python-docx==0.8.11
