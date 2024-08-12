@@ -1,9 +1,9 @@
 streamlit==1.25.0
-pillow==9.4.0
-img2pdf==0.4.4
-pdfkit==1.0.0
-python-docx==0.8.11
-nbformat==5.9.1
-nbconvert==7.8.0
-docx2pdf==0.1.8
+Pillow
+img2pdf
+pdfkit
+python-docx
+nbformat
+nbconvert
+docx2pdf
 
