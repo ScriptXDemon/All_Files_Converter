@@ -1,12 +1,9 @@
-pip install --upgrade pip
-pip install streamlit 
-pip install Pillow 
-pip install img2pdf
-pip install pdfkit 
-pip install docx 
-pip install python-docx 
-pip install nbformat 
-pip install nbconvert
-pip install docx2pdf 
-pip install tempfile
+streamlit==1.25.0
+Pillow==10.0.1
+img2pdf==0.4.4
+pdfkit==1.0.0
+python-docx==0.8.11
+nbformat==5.9.1
+nbconvert==7.8.0
+docx2pdf==0.1.8
 
