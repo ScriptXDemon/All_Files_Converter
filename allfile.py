@@ -47,10 +47,15 @@ st.markdown("""
 # Conversion functions
 
 def image_to_pdf(uploaded_file):
+    # Load the image from the uploaded file
     image = Image.open(uploaded_file)
+    
+    # Seek to the beginning of the uploaded file to get the binary data
     uploaded_file.seek(0)
-    image = image.convert("RGB")
-    pdf_bytes = img2pdf.convert(image.filename)
+    
+    # Convert the image to a PDF using the image binary data
+    pdf_bytes = img2pdf.convert(uploaded_file.read())
+    
     return pdf_bytes
 
 def docx_to_pdf_func(uploaded_file):
