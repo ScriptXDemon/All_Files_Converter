@@ -5,6 +5,8 @@ import pypandoc
 from io import BytesIO
 from docx import Document
 from docx.shared import Inches
+from docx.shared import Pt
+from docx2txt import process
 import nbformat
 from nbconvert import HTMLExporter
 import pdfkit
@@ -58,21 +60,42 @@ def image_to_pdf(uploaded_file):
     
     return pdf_bytes
 
+def docx_to_html(docx_path):
+    document = Document(docx_path)
+    html_content = "<html><body>"
+
+    for para in document.paragraphs:
+        style = para.style
+        font_size = None
+        if style.font and style.font.size:
+            font_size = style.font.size.pt
+        else:
+            font_size = Pt(12).pt  # Default font size
+
+        html_content += f"<p style='font-size: {font_size}px;'>{para.text}</p>"
+
+    html_content += "</body></html>"
+    return html_content
+
 def docx_to_pdf_func(uploaded_file):
-    # Save the uploaded docx file to a temporary location
-    with open("temp.docx", "wb") as f:
+    # Save the uploaded DOCX file to a temporary location
+    temp_docx_path = "temp.docx"
+    with open(temp_docx_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    # Convert the docx to pdf using pypandoc with a different pdf engine
+    # Convert DOCX to HTML
+    html_content = docx_to_html(temp_docx_path)
+
+    # Convert HTML to PDF using pdfkit
     output_pdf = "output.pdf"
-    pypandoc.convert_file("temp.docx", "pdf", outputfile=output_pdf, extra_args=['--pdf-engine=wkhtmltopdf'])
+    pdfkit.from_string(html_content, output_pdf)
 
     # Read the generated PDF file
     with open(output_pdf, "rb") as f:
         pdf_data = f.read()
 
     # Clean up temporary files
-    os.remove("temp.docx")
+    os.remove(temp_docx_path)
     os.remove(output_pdf)
 
     return pdf_data
