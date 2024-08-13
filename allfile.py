@@ -1,13 +1,13 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
 import img2pdf
+import pypandoc
 from io import BytesIO
 from docx import Document
 from docx.shared import Inches
 import nbformat
 from nbconvert import HTMLExporter
 import pdfkit
-from docx2pdf import convert as docx_to_pdf
 import tempfile
 import os
 
