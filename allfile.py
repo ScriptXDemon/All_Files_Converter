@@ -63,9 +63,9 @@ def docx_to_pdf_func(uploaded_file):
     with open("temp.docx", "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    # Convert the docx to pdf using pypandoc
+    # Convert the docx to pdf using pypandoc with a different pdf engine
     output_pdf = "output.pdf"
-    pypandoc.convert_file("temp.docx", "pdf", outputfile=output_pdf)
+    pypandoc.convert_file("temp.docx", "pdf", outputfile=output_pdf, extra_args=['--pdf-engine=wkhtmltopdf'])
 
     # Read the generated PDF file
     with open(output_pdf, "rb") as f:
