@@ -59,14 +59,22 @@ def image_to_pdf(uploaded_file):
     return pdf_bytes
 
 def docx_to_pdf_func(uploaded_file):
-    with tempfile.TemporaryDirectory() as tmpdirname:
-        tmp_docx_path = os.path.join(tmpdirname, uploaded_file.name)
-        with open(tmp_docx_path, 'wb') as tmp_file:
-            tmp_file.write(uploaded_file.getbuffer())
-        tmp_pdf_path = os.path.join(tmpdirname, "output.pdf")
-        docx_to_pdf(tmp_docx_path, tmp_pdf_path)
-        with open(tmp_pdf_path, 'rb') as tmp_file:
-            pdf_data = tmp_file.read()
+    # Save the uploaded docx file to a temporary location
+    with open("temp.docx", "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    # Convert the docx to pdf using pypandoc
+    output_pdf = "output.pdf"
+    pypandoc.convert_file("temp.docx", "pdf", outputfile=output_pdf)
+
+    # Read the generated PDF file
+    with open(output_pdf, "rb") as f:
+        pdf_data = f.read()
+
+    # Clean up temporary files
+    os.remove("temp.docx")
+    os.remove(output_pdf)
+
     return pdf_data
 
 def ipynb_to_pdf(uploaded_file):
