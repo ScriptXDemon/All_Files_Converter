@@ -1,6 +1,6 @@
 streamlit==1.25.0
 Pillow
-wkhtmltopdf
+docx2txt
 pypandoc
 img2pdf
 pdfkit
