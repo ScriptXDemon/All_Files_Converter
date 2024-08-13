@@ -1,5 +1,6 @@
 streamlit==1.25.0
 Pillow
+pypandoc
 img2pdf
 pdfkit
 python-docx
